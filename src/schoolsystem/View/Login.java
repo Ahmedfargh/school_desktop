@@ -121,6 +121,7 @@ public class Login extends javax.swing.JFrame {
             main_board board=new main_board();
             board.setBefore_frame(this);
             board.show(true);
+            this.setVisible(false);
             board.setTitle("اللوحه الرئيسيه");
             System.out.println("good");
         }else{

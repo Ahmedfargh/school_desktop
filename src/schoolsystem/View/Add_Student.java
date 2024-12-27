@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package schoolsystem.View;
-
+import schoolsystem.View.Adding_parents;
 /**
  *
  * @author ff
@@ -15,12 +15,16 @@ public class Add_Student extends javax.swing.JFrame {
      */
     private javax.swing.JFrame before_frame;
     private javax.swing.JFrame after_frame;
+    
     public Add_Student() {
         initComponents();
         this.std_gender.addItem("ذكر");
         this.std_gender.addItem("أنثى");
         this.std_religion.addItem("مسلم");
         this.std_religion.addItem("مسيحى");
+        this.rolling_status.addItem("مقيد");
+        this.rolling_status.addItem("غير مقيد");
+        
     }
     public void set_before_frame(javax.swing.JFrame frame){
         this.before_frame=frame;
@@ -55,7 +59,18 @@ public class Add_Student extends javax.swing.JFrame {
         std_religion = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        rolling_status = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        paymentstatus = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        division = new javax.swing.JComboBox<>();
+        transformed_from = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel7");
 
@@ -66,7 +81,7 @@ public class Add_Student extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("الاسم");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 150, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 150, -1));
 
         Std_name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         getContentPane().add(Std_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 187, -1));
@@ -74,7 +89,7 @@ public class Add_Student extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("الجنس");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 150, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 150, -1));
 
         std_gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +104,7 @@ public class Add_Student extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("تاريخ الميلاد");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 145, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 145, -1));
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -161,8 +176,48 @@ public class Add_Student extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 187, -1));
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("حاله القيد");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 70, 90, -1));
+
+        getContentPane().add(rolling_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 70, 150, -1));
+
+        jLabel12.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("حاله المصروفات");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 100, -1));
+
+        paymentstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "تم السداد", "لم يتم السداد", " " }));
+        getContentPane().add(paymentstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 150, -1));
+
+        jLabel14.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("الشعبه");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 100, 20));
+
+        division.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "علمى ", "علمى علوم", "علمى رياضه", "ادبى", " " }));
+        getContentPane().add(division, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 150, -1));
+        getContentPane().add(transformed_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 150, -1));
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 150, 20));
+
+        jLabel15.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("محول من");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 110, -1));
+
+        jLabel16.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("كود المدرسه");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 110, 20));
+
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolsystem/images/contact.jpg"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 850, 680));
+
+        jLabel13.setText("jLabel13");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,7 +242,11 @@ public class Add_Student extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        Adding_parents add_par=new Adding_parents();
+        add_par.setTitle("اضافه ولى امر لطالب جديد");
+        add_par.setVisible(true);
+        add_par.set_before(this);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -227,10 +286,17 @@ public class Add_Student extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Std_name;
+    private javax.swing.JComboBox<String> division;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -240,6 +306,9 @@ public class Add_Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> paymentstatus;
+    private javax.swing.JComboBox<String> rolling_status;
     private javax.swing.JTextArea std_address;
     private com.toedter.calendar.JDateChooser std_brith_date;
     private javax.swing.JTextField std_code;
@@ -247,5 +316,6 @@ public class Add_Student extends javax.swing.JFrame {
     private javax.swing.JTextField std_nat_id;
     private javax.swing.JTextField std_phone;
     private javax.swing.JComboBox<String> std_religion;
+    private javax.swing.JTextField transformed_from;
     // End of variables declaration//GEN-END:variables
 }
