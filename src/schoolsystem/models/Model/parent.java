@@ -109,19 +109,21 @@ public class parent extends Model {
             String query = "";
             Statement stat = conn.createStatement();
             if (this.id == 0) {
-                query = "INSERT INTO parents(name,phone,nat_id,gender,birth_date,address,religion,job)VALUES('" + this.name + "','" + this.phone + "','" + this.nat_id + "','" + this.nat_id + "','" + this.gender + "','" + this.birth_date + "','" + this.address + "','" + this.religion + "','" + this.job + "');";
+                query = "INSERT INTO parents(name,phone,nat_id,gender,birth_date,address,religion,job)VALUES('" + this.name + "','" + this.phone + "','" + this.nat_id + "','" + this.gender + "','" + this.birth_date + "','" + this.address + "','" + this.religion + "','" + this.job + "');";
+                System.out.println(query);
                 stat.execute(query);
                 ResultSet resultSet = stat.executeQuery("select max(id) as mx_id from parents");
                 this.id = resultSet.getInt("mx_id");
                 return true;
             } else {
-                query = "UPDATE parents set name='" + this.name + "',phone='"this.phone"',nat_id='"+this.nat_id + "',nat_id='" + this.nat_id + "',gender='" + this.gender + "',birth_date='" + this.birth_date + "',address='" + this.address + "',religion='" + this.religion + "' where id=" + String.format(this.id, "%d");
+                query = "UPDATE parents set name='" + this.name + "',phone='"this.phone"',nat_id='"+this.nat_id + "',nat_id='" + this.nat_id + "',gender='" + this.gender + "',birth_date='" + this.birth_date + "',address='" + this.address + "',religion='" + this.religion + "' where id=" + String.format("%d", this.id) + ";";
+                System.out.println(query);
                 ResultSet resultSet = stat.executeQuery("select max(id) as mx_id from student");
                 this.id = resultSet.getInt("mx_id");
                 return true;
             }
         } catch (SQLException ex) {
-            System.out.print(ex.getStackTrace());
+            System.out.print(ex.getMessage());
         }
         return false;
     }
@@ -140,8 +142,8 @@ public class parent extends Model {
                 par.nat_id = res.getString("nat_id");
                 par.phone = res.getString("phone");
                 par.religion = res.getString("religion");
-                par.birth_date=res.getDate("birth_date").toString();
-                par.id=res.getInt("id");
+                par.birth_date = res.getDate("birth_date").toString();
+                par.id = res.getInt("id");
                 return par;
             }
             par.name = "ahmed";
@@ -156,36 +158,42 @@ public class parent extends Model {
         return id;
     }
 
+    public void setNat_id(String nat_id) {
+        this.nat_id = nat_id;
+    }
+
     public String getNat_id() {
         return nat_id;
     }
-    public static LinkedList<parent> where(String col,String cond,String value){
-        try{
-            LinkedList<parent>results=new LinkedList<parent>();
-            String query="SELECT * FROM parents where "+col+cond+value;
-            Statement stat=parent.conn.createStatement();
-            ResultSet res=stat.executeQuery(query);
-            int i=0;
-            while(res.next()){
-                parent par=new parent();
-                par.name=res.getString("name");
-                par.address=res.getString("address");
-                par.gender=res.getString("gender");
-                par.id=res.getInt("id");
-                par.job=res.getString("job");
-                par.name=res.getString("name");
-                par.nat_id=res.getString("nat_id");
-                par.phone=res.getString("phone");
-                par.religion=res.getString("religion");
+
+    public static LinkedList<parent> where(String col, String cond, String value) {
+        try {
+            LinkedList<parent> results = new LinkedList<parent>();
+            String query = "SELECT * FROM parents where " + col + cond + value;
+            Statement stat = parent.conn.createStatement();
+            ResultSet res = stat.executeQuery(query);
+            int i = 0;
+            while (res.next()) {
+                parent par = new parent();
+                par.name = res.getString("name");
+                par.address = res.getString("address");
+                par.gender = res.getString("gender");
+                par.id = res.getInt("id");
+                par.job = res.getString("job");
+                par.name = res.getString("name");
+                par.nat_id = res.getString("nat_id");
+                par.phone = res.getString("phone");
+                par.religion = res.getString("religion");
                 results.add(par);
                 i++;
             }
-            return i!=0?results:null;
-        }catch(SQLException ex){
+            return i != 0 ? results : null;
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
     }
+
     public static LinkedList<parent> All() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("com.mysql.jdbc.Driver");

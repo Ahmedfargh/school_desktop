@@ -24,11 +24,11 @@ public class student extends Model {
     protected String address;
     protected String nat_id;
     protected String join_date;
-    protected String rolling_status;
-    protected String paymentstatus;
-    protected String division;
-    protected String transformed_from;
-    protected String school_code;
+    protected String rolling_status="مقيد";
+    protected String paymentstatus="لم يتم الدفع";
+    protected String division="علمى";
+    protected String transformed_from="مستجد";
+    protected String school_code="0";
     protected int id = 0;
 
     public student() throws SQLException {
@@ -45,11 +45,11 @@ public class student extends Model {
     }
 
     public String getPhone_number() {
-        return phone_number;
+        return phone;
     }
 
     public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+        this.phone = phone_number;
     }
 
     public String getReligion() {
@@ -149,13 +149,13 @@ public class student extends Model {
             Statement stat = conn.createStatement();
 
             if (this.id == 0) {
-                query = "INSERT INTO student(name,phone,std_code,nat_id,gender,birth_date,address,religion)VALUES('" + this.name + "','" + this.phone + "','" + this.std_code + "','" + this.nat_id + "','" + this.gender + "','" + this.birth_date + "','" + this.address + "','" + this.religion + "');";
+                query = "INSERT INTO student(name,phone,std_code,nat_id,gender,birth_date,address,religion,rolling_status,paymentstatus,division,transformed_from,school_code)VALUES('" + this.name + "','" + this.phone + "','" + this.std_code + "','" + this.nat_id + "','" + this.gender + "','" + this.birth_date + "','" + this.address + "','" + this.religion + "','"+this.rolling_status+"','"+this.paymentstatus+"','"+this.division+"','"+this.transformed_from+"','"+this.school_code+"');";
                 stat.execute(query);
                 ResultSet resultSet = stat.executeQuery("select max(id) as mx_id from student");
                 this.id = resultSet.getInt("mx_id");
                 return true;
             } else {
-                query = "UPDATE student set name='" + this.name + "',phone='"this.phone"',std_code='"+this.std_code + "',nat_id='" + this.nat_id + "',gender='" + this.gender + "',birth_date='" + this.birth_date + "',address='" + this.address + "',religion='" + this.religion + "' where id=".concat(String.format("%d", this.id));
+                query = "UPDATE student set name='" + this.name + "',phone='"this.phone"',std_code='"+this.std_code + "',nat_id='" + this.nat_id + "',gender='" + this.gender + "',birth_date='" + this.birth_date + "',address='" + this.address + "',religion='" + this.religion + "'rolling_status='"+this.rolling_status+"',paymentstatus='"+this.paymentstatus+"',division='"+this.division+"',trangormed_from='"+this.transformed_from+"',school_code='"+this.school_code+"' where id=".concat(String.format("%d", this.id));
                 ResultSet resultSet = stat.executeQuery("select max(id) as mx_id from student");
                 this.id = resultSet.getInt("mx_id");
                 return true;
@@ -235,4 +235,53 @@ public class student extends Model {
         }
         return null;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRolling_status() {
+        return rolling_status;
+    }
+
+    public void setRolling_status(String rolling_status) {
+        this.rolling_status = rolling_status;
+    }
+
+    public String getPaymentstatus() {
+        return paymentstatus;
+    }
+
+    public void setPaymentstatus(String paymentstatus) {
+        this.paymentstatus = paymentstatus;
+    }
+
+    public String getDivision() {
+        return division;
+    }
+
+    public void setDivision(String division) {
+        this.division = division;
+    }
+
+    public String getTransformed_from() {
+        return transformed_from;
+    }
+
+    public void setTransformed_from(String transformed_from) {
+        this.transformed_from = transformed_from;
+    }
+
+    public String getSchool_code() {
+        return school_code;
+    }
+
+    public void setSchool_code(String school_code) {
+        this.school_code = school_code;
+    }
+    
 }

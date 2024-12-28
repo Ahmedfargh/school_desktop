@@ -4,18 +4,25 @@
  */
 package schoolsystem.View;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import schoolsystem.View.parentsTable;
-
+import schoolsystem.models.Model.student;
+import schoolsystem.models.Model.parent;
 /**
  *
  * @author ff
  */
 public class Adding_parents extends javax.swing.JFrame {
 
+
     /**
      * Creates new form Adding_parents
      */
+    protected student current_std=null;
+    protected parent current_par=null;
     private javax.swing.JFrame after_frame;
     private javax.swing.JFrame before_frame;
     public Adding_parents() {
@@ -75,9 +82,32 @@ public class Adding_parents extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public student getCurrent_std() {
+        return current_std;
+    }
+
+    public void setCurrent_std(student current_std) {
+        this.current_std = current_std;
+    }
+
+    public parent getCurrent_par() {
+        return current_par;
+    }
+
+    public void setCurrent_par(parent current_par) {
+        this.current_par = current_par;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        parentsTable par_table=new parentsTable();
+        parentsTable par_table = null;
+        try {
+            par_table = new parentsTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(Adding_parents.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Adding_parents.class.getName()).log(Level.SEVERE, null, ex);
+        }
         par_table.set_before(this);
         this.setVisible(false);
         par_table.setVisible(true);

@@ -390,7 +390,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="school_code">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>

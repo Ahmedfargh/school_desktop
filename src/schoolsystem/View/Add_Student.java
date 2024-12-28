@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package schoolsystem.View;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import schoolsystem.View.Adding_parents;
+import schoolsystem.models.Model.student;
 /**
  *
  * @author ff
@@ -15,7 +19,7 @@ public class Add_Student extends javax.swing.JFrame {
      */
     private javax.swing.JFrame before_frame;
     private javax.swing.JFrame after_frame;
-    
+    private student current_std=null;
     public Add_Student() {
         initComponents();
         this.std_gender.addItem("ذكر");
@@ -66,7 +70,7 @@ public class Add_Student extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         division = new javax.swing.JComboBox<>();
         transformed_from = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        school_code = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -200,8 +204,8 @@ public class Add_Student extends javax.swing.JFrame {
         getContentPane().add(division, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 150, -1));
         getContentPane().add(transformed_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 150, -1));
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 150, 20));
+        school_code.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(school_code, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 150, 20));
 
         jLabel15.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -239,10 +243,33 @@ public class Add_Student extends javax.swing.JFrame {
     private void std_religionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_std_religionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_std_religionActionPerformed
-
+    private void build_student_object() throws SQLException{
+        student std=new student();
+        std.setName(this.Std_name.getText());
+        std.setAddress(this.std_address.getText());
+        std.setBirth_date(this.std_brith_date.getDate().toString());
+        std.setGender((String) this.std_gender.getSelectedItem());
+        std.setNat_id(this.std_nat_id.getText());
+        std.setPhone_number(this.std_phone.getText());
+        std.setReligion((String)this.std_religion.getSelectedItem());
+        std.setStd_code(this.std_code.getText());
+        std.setPaymentstatus((String)this.paymentstatus.getSelectedItem());
+        std.setDivision((String)this.division.getSelectedItem());
+        std.setTransformed_from(this.transformed_from.getSelectedText());
+        std.setRolling_status((String) this.rolling_status.getSelectedItem());
+        std.setSchool_code(this.school_code.getText());
+        this.current_std=std;
+        return ;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Adding_parents add_par=new Adding_parents();
+        try {
+            this.build_student_object();
+        } catch (SQLException ex) {
+            Logger.getLogger(Add_Student.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        add_par.setCurrent_std(this.current_std);
         add_par.setTitle("اضافه ولى امر لطالب جديد");
         add_par.setVisible(true);
         add_par.set_before(this);
@@ -306,9 +333,9 @@ public class Add_Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> paymentstatus;
     private javax.swing.JComboBox<String> rolling_status;
+    private javax.swing.JTextField school_code;
     private javax.swing.JTextArea std_address;
     private com.toedter.calendar.JDateChooser std_brith_date;
     private javax.swing.JTextField std_code;

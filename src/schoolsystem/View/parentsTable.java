@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import schoolsystem.models.Model.parent;
+import schoolsystem.View.add_parents_form;
 /**
  *
  * @author ff
@@ -21,7 +22,7 @@ public class parentsTable extends javax.swing.JFrame {
      * Creates new form parentsTable
      */
     private javax.swing.JFrame before;
-   
+    private add_parents_form form;
     public parentsTable() throws SQLException, ClassNotFoundException {
         initComponents();
         this.load_table();
@@ -49,6 +50,15 @@ public class parentsTable extends javax.swing.JFrame {
     public void set_before(JFrame frame){
         this.before=frame;
     }
+
+    public add_parents_form getForm() {
+        return form;
+    }
+
+    public void setForm(add_parents_form form) {
+        this.form = form;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -272,6 +282,11 @@ public class parentsTable extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.form=new add_parents_form();
+        this.form.setVisible(true);
+        this.form.setBefore_frame(this);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
